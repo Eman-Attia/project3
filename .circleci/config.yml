@@ -434,18 +434,19 @@ workflows:
           filters:
             branches:
               ignore: master           
-              
-              
-    
       - smoke-test:
           requires:
             - deploy-frontend
           filters:
             branches:
-              only: master
+              ignore: master                
       - delete-old-infrastructure:
           requires:
             - smoke-test
           filters:
             branches:
-              only: master
+              ignore: master               
+    
+  
+
+              
