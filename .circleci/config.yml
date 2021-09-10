@@ -428,19 +428,6 @@ workflows:
           filters:
             branches:
               ignore: master
-    
-  deploy2:
-    jobs:
-      - create-new-infrastructure:
-          filters:
-            branches:
-              only: master
-      - deploy-backend:
-          requires:
-            - create-new-infrastructure
-          filters:
-            branches:
-              only: master
       - deploy-frontend:
           requires:
             - deploy-backend
