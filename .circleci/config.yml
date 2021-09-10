@@ -112,7 +112,8 @@ jobs:
           command: |
             cd frontend
             npm run test
-      - slack/status
+      - slack/status:
+          webhook: "https://hooks.slack.com/services/P024FC9RY/B0H99CHGU/dOrZ0mA2ZekCw0bvmWtbC8Hk"
 
   analyze-frontend:
     docker:
@@ -129,7 +130,8 @@ jobs:
           command: |
             cd frontend
             npm audit fix --audit-level=critical --force
-      - slack/status
+      - slack/status:
+          webhook: "https://hooks.slack.com/services/P024FC9RY/B0H99CHGU/dOrZ0mA2ZekCw0bvmWtbC8Hk"
 
   build-backend:
     docker:
@@ -146,7 +148,8 @@ jobs:
           command: |
             cd backend
             npm run build
-      - slack/status
+      - slack/status:
+          webhook: "https://hooks.slack.com/services/P024FC9RY/B0H99CHGU/dOrZ0mA2ZekCw0bvmWtbC8Hk"
 
   test-backend:
     docker:
@@ -163,7 +166,8 @@ jobs:
           command: |
             cd backend
             npm run test
-      - slack/status
+      - slack/status:
+          webhook: "https://hooks.slack.com/services/P024FC9RY/B0H99CHGU/dOrZ0mA2ZekCw0bvmWtbC8Hk"
 
   analyze-backend:
     docker:
@@ -180,7 +184,8 @@ jobs:
           command: |
             cd backend
             npm audit fix --audit-level=critical --force
-      - slack/status
+      - slack/status:
+          webhook: "https://hooks.slack.com/services/P024FC9RY/B0H99CHGU/dOrZ0mA2ZekCw0bvmWtbC8Hk"
 
   create-new-infrastructure:
     docker:
