@@ -368,37 +368,6 @@ jobs:
           webhook: "https://hooks.slack.com/services/P024FC9RY/B0H99CHGU/dOrZ0mA2ZekCw0bvmWtbC8Hk"
 
 workflows:
-  deploy:
-    jobs:
-      - create-new-infrastructure:
-          filters:
-            branches:
-              only: master
-      - deploy-backend:
-          requires:
-            - create-new-infrastructure
-          filters:
-            branches:
-              only: master
-      - deploy-frontend:
-          requires:
-            - deploy-backend
-          filters:
-            branches:
-              only: master
-      - smoke-test:
-          requires:
-            - deploy-frontend
-          filters:
-            branches:
-              only: master
-      - delete-old-infrastructure:
-          requires:
-            - smoke-test
-          filters:
-            branches:
-              only: master
-
   frontend:
     jobs:
       - hello:
@@ -448,3 +417,33 @@ workflows:
             branches:
               ignore: master
  
+  deploy:
+    jobs:
+      - create-new-infrastructure:
+          filters:
+            branches:
+              only: master
+      - deploy-backend:
+          requires:
+            - create-new-infrastructure
+          filters:
+            branches:
+              only: master
+      - deploy-frontend:
+          requires:
+            - deploy-backend
+          filters:
+            branches:
+              only: master
+      - smoke-test:
+          requires:
+            - deploy-frontend
+          filters:
+            branches:
+              only: master
+      - delete-old-infrastructure:
+          requires:
+            - smoke-test
+          filters:
+            branches:
+              only: master
