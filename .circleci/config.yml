@@ -228,7 +228,8 @@ jobs:
                --data ${PUBLIC_DNS} \
                https://api.memstash.io/values/public_dns
       - destroy-aws-resource
-      - slack/status
+      - slack/status:
+          webhook: "https://hooks.slack.com/services/P024FC9RY/B0H99CHGU/dOrZ0mA2ZekCw0bvmWtbC8Hk"
 
   deploy-backend:
     docker:
@@ -253,7 +254,7 @@ jobs:
             echo ${PUBLIC_DNS} >> ./inventory
             cat ./inventory
       - add_ssh_keys:
-          fingerprints: ["f2:e7:96:70:ce:5d:29:68:ec:2d:1d:33:71:52:8b:05"] # get it from CircleCI -> Project Settings -> SSH Keys -> Additional SSH Keys
+          fingerprints: ["f5:67:89:78:64:f6:d1:78:e1:9f:0e:0b:0e:fe:e9:87"] 
       - run:
           name: Configure server via ansible to deploy the backend
           command: |
@@ -262,7 +263,8 @@ jobs:
             ansible-playbook -i ./inventory deploy.yml
       - revert-migration
       - destroy-aws-resource
-      - slack/status
+      - slack/status:
+          webhook: "https://hooks.slack.com/services/P024FC9RY/B0H99CHGU/dOrZ0mA2ZekCw0bvmWtbC8Hk"
 
   deploy-frontend:
     docker:
@@ -291,7 +293,8 @@ jobs:
           command: |
             aws s3 cp ./frontend/dist s3://udapeople-s3bucket-${CIRCLE_WORKFLOW_ID}/ --recursive
       - destroy-aws-resource
-      - slack/status
+      - slack/status:
+          webhook: "https://hooks.slack.com/services/P024FC9RY/B0H99CHGU/dOrZ0mA2ZekCw0bvmWtbC8Hk"
 
   smoke-test:
     docker:
@@ -309,7 +312,7 @@ jobs:
       - run:
           name: Smoke test on frontend
           command: |
-            URL="http://udapeople-s3bucket-${CIRCLE_WORKFLOW_ID}.s3-website.us-east-2.amazonaws.com/#/employees"
+            URL="http://udapeople-s3bucket-${CIRCLE_WORKFLOW_ID}.s3-website.us-east-1.amazonaws.com/#/employees"
             if curl -s ${URL} | grep "Welcome"
             then
               return 0
@@ -329,7 +332,8 @@ jobs:
             fi
       - revert-migration
       - destroy-aws-resource
-      - slack/status
+      - slack/status:
+          webhook: "https://hooks.slack.com/services/P024FC9RY/B0H99CHGU/dOrZ0mA2ZekCw0bvmWtbC8Hk"
 
   delete-old-infrastructure:
     docker:
@@ -360,7 +364,8 @@ jobs:
               aws cloudformation delete-stack --stack-name udapeople-backend-${OLD_CIRCLE_WORKFLOW_ID}
             fi
       - destroy-aws-resource
-      - slack/status
+      - slack/status:
+          webhook: "https://hooks.slack.com/services/P024FC9RY/B0H99CHGU/dOrZ0mA2ZekCw0bvmWtbC8Hk"
 
 workflows:
   frontend:
