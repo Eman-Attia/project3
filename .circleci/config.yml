@@ -94,7 +94,8 @@ jobs:
           command: |
             cd frontend
             npm run build
-      - slack/status
+      - slack/status:
+          webhook: "https://hooks.slack.com/services/P024FC9RY/B0H99CHGU/dOrZ0mA2ZekCw0bvmWtbC8Hk"
 
   test-frontend:
     docker:
