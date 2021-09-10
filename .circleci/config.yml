@@ -418,7 +418,7 @@ workflows:
               ignore: master
   deploy:
       jobs:
-      - hello:
+      - create-new-infrastructure:
           filters:
             branches:
               ignore: master
