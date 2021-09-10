@@ -416,7 +416,13 @@ workflows:
           filters:
             branches:
               ignore: master
- 
+  wellend:
+      jobs:
+      - hello:
+          filters:
+            branches:
+              ignore: master
+    
   deploy:
     jobs:
       - create-new-infrastructure:
