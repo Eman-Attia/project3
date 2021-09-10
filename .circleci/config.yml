@@ -425,9 +425,9 @@ workflows:
       - deploy-backend:
           requires:
             - create-new-infrastructure
-                filters:
-                  branches:
-                    ignore: master
+          filters:
+            branches:
+              ignore: master
     
   deploy2:
     jobs:
