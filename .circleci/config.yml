@@ -433,7 +433,10 @@ workflows:
             - deploy-backend
           filters:
             branches:
-              only: master
+              ignore: master           
+              
+              
+    
       - smoke-test:
           requires:
             - deploy-frontend
