@@ -315,8 +315,6 @@ jobs:
             if curl -s "http://${PUBLIC_DNS}:3030/api/status" | grep "ok"
             then
               return 0
-            else
-              return 1
             fi
       - revert-migration
       - destroy-aws-resource
