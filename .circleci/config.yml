@@ -250,12 +250,8 @@ jobs:
             echo "[all]" > ./inventory
             echo ${PUBLIC_DNS} >> ./inventory
             cat ./inventory
-      - run: yum -y install tar gzip
-      - persist_to_workspace:
-          root: ~/
-          paths:
-            - project/.circleci/outputs/backend_url.txt
-            - project/.circleci/ansible/inventory.txt
+     
+    
       - add_ssh_keys:
           fingerprints: ["f5:67:89:78:64:f6:d1:78:e1:9f:0e:0b:0e:fe:e9:87"] 
       - run:
