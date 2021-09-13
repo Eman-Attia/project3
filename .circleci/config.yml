@@ -423,9 +423,9 @@ workflows:
           filters:
             branches:
               ignore: master                
-      - delete-old-infrastructure:
-          requires:
-            - smoke-test
-          filters:
-            branches:
-              ignore: master  
+      #- delete-old-infrastructure:
+      #    requires:
+       #     - smoke-test
+      #    filters:
+        #    branches:
+          #    ignore: master  
